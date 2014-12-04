@@ -33,8 +33,7 @@ for i in "${Container_name[@]}"; do
 	docker ps -a | grep $i  > /dev/null
 	if [[ $? -eq 0 ]]; then
 		printf "%-20s [${vertclair}running${neutre}]\n" "$i"
-	fi
-	if [[ $? -eq 1 ]]; then
-		printf "%-20s [${rougefonce}not running${neutre}]\n" "$i"
+	else
+		printf "%-20s [${rougefonce}not running${neutre}]\n" "$i";
 	fi
 done
