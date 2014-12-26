@@ -7,7 +7,7 @@
 Service_name=(sshd nginx);
 
 # Declaration of services running into containers
-Container_name=(cadvisor shout ghost);
+Container_name=(shout ghost);
 
 
 # Definition of the colors
@@ -30,10 +30,17 @@ done
 
 # Start looping for docker's container
 for i in "${Container_name[@]}"; do
-	docker ps -a | grep $i  > /dev/null
+	docker ps | grep $i  > /dev/null
 	if [[ $? -eq 0 ]]; then
-		printf "%-20s [${vertclair}running${neutre}]\n" "$i"
+		printf "%-20s [${vertclair}running${neutre}]\n" "$i";
 	else
 		printf "%-20s [${rougefonce}not running${neutre}]\n" "$i";
+		echo -e "${rougefonce}trying to start $i ${neutre}";
+		docker start $i > /dev/null;
+		if [[ $? -eq 0 ]]; then
+			echo -e "${vertclair}$i is running!${neutre}";
+		else
+			echo -e "${rougefonce}$i is not running!${neutre}";
+		fi
 	fi
 done
