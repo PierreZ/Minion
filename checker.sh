@@ -9,6 +9,8 @@ Service_name=(sshd nginx);
 # Declaration of services running into containers
 Container_name=(shout ghost);
 
+# Declaration of git
+git_repo=('/srv/http/sw' '/srv/http/portfolio');
 
 # Definition of the colors
 neutre='\e[0;m'
@@ -43,4 +45,9 @@ for i in "${Container_name[@]}"; do
 			echo -e "${rougefonce}$i is not running!${neutre}";
 		fi
 	fi
+done
+
+for repo in "${git_repo[@]}"; do
+    echo "${repo}"
+    (cd "${repo}" && git pull)
 done
