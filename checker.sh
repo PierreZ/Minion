@@ -7,7 +7,7 @@
 Service_name=(sshd nginx);
 
 # Declaration of services running into containers
-Container_name=(shout ghost elementz);
+Container_name=(shout ghost elementz cadvisor);
 
 # Declaration of git
 git_repo=('/srv/http/slides/docker-presentation-gdg-2014' '/srv/http/portfolio');
@@ -53,6 +53,7 @@ done
 
 echo;
 echo "Updating GitHub repos";
+echo;
 for repo in "${git_repo[@]}"; do
     echo "${repo}"
     (cd "${repo}" && git pull)
