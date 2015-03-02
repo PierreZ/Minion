@@ -16,7 +16,7 @@ git_repo=('/srv/http/slides/docker-presentation-gdg-2014' '/srv/http/portfolio')
 neutre='\e[0;m'
 rougefonce='\e[0;31m'
 vertclair='\e[1;32m'
-
+echo -e `host -t txt istheinternetonfire.com` | cut -f 2 -d '"'| sed "s/[\];/\n/g"
 echo;
 echo "There's $(checkupdates|wc -l) update(s) available"
 echo;
